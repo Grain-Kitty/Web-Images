@@ -14,7 +14,7 @@ async function generateImageJson() {
             if (stats.isFile() && /\.(jpg|jpeg|png|gif)$/i.test(file)) {
                 imageInfo.push({
                     name: file,
-                    url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@main/${filePath.replace(/\\/g, '/')}`
+                    url: `https://raw.githubusercontent.com/Grain-Kitty/Web-Images/refs/heads/main/${filePath.replace(/\\/g, '/')}`
                 });
             }
         }

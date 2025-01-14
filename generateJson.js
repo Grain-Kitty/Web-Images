@@ -12,10 +12,9 @@ async function generateImageJson() {
             const filePath = path.join(imageFolder, file);
             const stats = await fs.stat(filePath);
             if (stats.isFile() && /\.(jpg|jpeg|png|gif)$/i.test(file)) {
-                // 在 url 属性前添加 http://www 并将路径中的 \\ 替换为 /
                 imageInfo.push({
                     name: file,
-                    url: `https://github.com/Grain-Kitty/Web-Images/blob/main/images/${filePath.replace(/\\/g, '/')}`
+                    url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@main/images/${filePath.replace(/\\/g, '/')}`
                 });
             }
         }

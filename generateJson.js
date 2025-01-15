@@ -11,7 +11,7 @@ async function generateImageJson() {
         for (const file of files) {
             const filePath = path.join(imageFolder, file);
             const stats = await fs.stat(filePath);
-            if (stats.isFile() && /\.(jpg|jpeg|png|gif)$/i.test(file)) {
+            if (stats.isFile() && /\.(jpg|jpeg|png|gif|webp)$/i.test(file)) {
                 imageInfo.push({
                     name: file,
                     url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@refs/heads/main/${filePath.replace(/\\/g, '/')}`

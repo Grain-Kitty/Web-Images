@@ -1,8 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { promisify } from 'util';
+import sizeOf from 'image-size';
 
 // 图片所在文件夹路径
 const imageFolder = 'images/';
+
+// 将 sizeOf 转换为 promise 形式
+const sizeOfPromise = promisify(sizeOf);
 
 async function generateImageJson() {
     const imageInfo = [];
@@ -12,9 +17,13 @@ async function generateImageJson() {
             const filePath = path.join(imageFolder, file);
             const stats = await fs.stat(filePath);
             if (stats.isFile() && /\.(jpg|jpeg|png|gif|webp)$/i.test(file)) {
+                // 获取图片尺寸
+                const dimensions = await sizeOfPromise(filePath);
                 imageInfo.push({
                     name: file,
-                    url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@refs/heads/main/${filePath.replace(/\\/g, '/')}`
+                    url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@refs/heads/main/${filePath.replace(/\\/g, '/')}`,
+                    width: dimensions.width,
+                    height: dimensions.height
                 });
             }
         }

@@ -21,7 +21,7 @@ async function generateImageJson() {
                 const dimensions = await sizeOfPromise(filePath);
                 imageInfo.push({
                     name: file,
-                    url: `https://cdn.jsdelivr.net/gh/Grain-Kitty/Web-Images@refs/heads/main/${filePath.replace(/\\/g, '/')}`,
+                    url: `https://raw.githubusercontent.com/Grain-Kitty/Web-Images/refs/heads/main/${filePath.replace(/\\/g, '/')}`,
                     width: dimensions.width,
                     height: dimensions.height
                 });
